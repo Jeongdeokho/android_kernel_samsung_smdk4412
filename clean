@@ -1,0 +1,3 @@
+rm -rf ./out/*
+rm ./pack/boot/zImage
+touch ./out/empty
