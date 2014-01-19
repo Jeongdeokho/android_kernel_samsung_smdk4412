@@ -11,17 +11,16 @@ cd $kdir
 mkdir out
 mkdir $home/temp
 rm -rf $home/temp/*
-rm $kdir/usr/galaxys2_initramfs_files/modules/*
+rm $kdir/pack/system/lib/modules/*
 rm -rf out/*
 rm -rf ./pack/boot/zImage
 mv .git git
 make cyanogenmod_i9100_defconfig
 make mrproper
 make cyanogenmod_i9100_defconfig
-rm -rf $kdir/usr/galaxys2_initramfs_files/modules/*
+rm -rf $kdir/pack/system/lib/modules/*
 make -j16 CONFIG_INITRAMFS_SOURCE="$ramdisk"
-find . -name "*.ko" -exec mv {} $kdir/usr/galaxys2_initramfs_files/modules/ \;
-mv $kdir/usr/galaxys2_initramfs_files/modules/* $kdir/pack/system/lib/modules/
+find . -name "*.ko" -exec mv {} $kdir/pack/system/lib/modules/ \;
 $home/toolchain/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-strip --strip-unneeded $kdir/pack/system/lib/modules/*
 cp $kdir/arch/arm/boot/zImage $kdir/pack/boot/
 cd $kdir/pack
